@@ -1,29 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AUI DATA</title>
+<title>AUI DATA - Buy Data</title>
 <style>
-body{font-family:sans-serif;text-align:center;background:#f0f2f5;padding:20px}
-h1{color:#0066ff;font-size:36px}
-.card{background:white;max-width:400px;margin:20px auto;padding:20px;border-radius:20px}
-a{display:block;width:100%;padding:18px;margin:12px 0;border-radius:12px;color:white;font-weight:bold;text-decoration:none;text-align:center}
-.mtn{background:#ffcc00;color:black}
-.glo{background:red}
-.airtel{background:green}
-.nine{background:black}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0f1115;color:white;padding:15px;padding-bottom:100px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.header h2{font-size:22px} .header p{color:#aaa;font-size:14px}
+.history{background:#1e232f;color:#ffcc00;padding:8px 15px;border-radius:20px;font-size:13px;border:none}
+.phone-box{background:#1e232f;padding:15px;border-radius:15px;display:flex;align-items:center;gap:10px;margin-bottom:25px}
+.phone-box input{background:transparent;border:none;color:white;font-size:18px;width:100%;outline:none}
+.phone-box span{background:#2a3242;padding:8px;border-radius:8px}
+.label{color:#888;font-size:12px;letter-spacing:1px;margin:20px 0 12px;font-weight:bold}
+.networks{display:flex;gap:12px;overflow-x:auto}
+.net{display:flex;flex-direction:column;align-items:center;gap:8px;background:#1e232f;padding:15px 20px;border-radius:15px;border:2px solid transparent;min-width:80px;cursor:pointer}
+.net.active{border-color:#ffcc00}
+.net img{width:30px;height:30px;border-radius:50%}
+.cats{display:flex;gap:10px;overflow-x:auto;margin-bottom:10px}
+.cat{background:#1e232f;padding:10px 18px;border-radius:20px;font-size:13px;border:none;color:#ccc;cursor:pointer;white-space:nowrap}
+.cat.active{background:#ffcc00;color:black;font-weight:bold}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.plan{background:#1e232f;padding:18px;border-radius:18px;text-align:center;cursor:pointer;border:1px solid #2a3242}
+.plan h3{font-size:20px;margin-bottom:5px} .plan p{color:#888;font-size:12px;margin-bottom:10px} .plan b{font-size:15px}
+.plan:hover{border-color:#ffcc00}
+.foot{position:fixed;bottom:0;left:0;right:0;background:#0f1115;padding:15px}
+.buy-btn{background:#ffcc00;color:black;width:100%;padding:18px;border-radius:30px;border:none;font-weight:bold;font-size:16px}
 </style>
 </head>
 <body>
-<h1>AUI DATA</h1>
-<p>Best Data Plug - Cheap & Fast</p>
-<div class="card">
-<a class="mtn" href="https://wa.me/2347066759055?text=Hello%20AUI%20I%20want%20MTN%20DATA">MTN DATA</a>
-<a class="glo" href="https://wa.me/2347066759055?text=Hello%20AUI%20I%20want%20GLO%20DATA">GLO DATA</a>
-<a class="airtel" href="https://wa.me/2347066759055?text=Hello%20AUI%20I%20want%20AIRTEL%20DATA">AIRTEL DATA</a>
-<a class="nine" href="https://wa.me/2347066759055?text=Hello%20AUI%20I%20want%209MOBILE%20DATA">9MOBILE DATA</a>
-<p>Call: 07066759055</p>
+<div class="header">
+<div><h2>Buy Data</h2><p>Top up data on any network - AUI DATA</p></div>
+<button class="history">🕒 History</button>
 </div>
+<div class="phone-box"><span>👤</span><input id="phone" type="tel" placeholder="0801 234 5678" value="07066759055"><span>📒</span></div>
+<div class="label">SELECT NETWORK</div>
+<div class="networks">
+<div class="net active" onclick="selNet(this,'MTN')"> <img src="https://i.ibb.co/0jZ3QkY/mtn.png"> MTN </div>
+<div class="net" onclick="selNet(this,'GLO')"><img src="https://i.ibb.co/3mS0KQJ/glo.png"> Glo </div>
+<div class="net" onclick="selNet(this,'AIRTEL')"><img src="https://i.ibb.co/Wp6y1Yk/airtel.png"> Airtel </div>
+<div class="net" onclick="selNet(this,'9MOBILE')"> <img src="https://i.ibb.co/7r5x0pJ/9m.png"> T2 </div>
+</div>
+<div class="label">CATEGORY</div>
+<div class="cats">
+<button class="cat" onclick="selCat(this)">SME</button>
+<button class="cat" onclick="selCat(this)">DAILY</button>
+<button class="cat active" onclick="selCat(this)">WEEKLY</button>
+<button class="cat" onclick="selCat(this)">MONTHLY</button>
+</div>
+<div class="label">CHOOSE A PLAN</div>
+<div class="plans" id="plans">
+<div class="plan" onclick="buy('1GB - 7 days - ₦394.90')"><h3>1GB</h3><p>7 days</p><b>₦394.90</b></div>
+<div class="plan" onclick="buy('3.5GB - 7 days - ₦1,470')"><h3>3.5GB</h3><p>7 days</p><b>₦1,470.00</b></div>
+<div class="plan" onclick="buy('1.8GB - 3 days - ₦1,470')"><h3>1.8GB</h3><p>3 days</p><b>₦1,470.00</b></div>
+<div class="plan" onclick="buy('11GB - 7 days - ₦3,430')"><h3>11GB</h3><p>7 days</p><b>₦3,430.00</b></div>
+</div>
+<div class="foot"><button class="buy-btn" onclick="buy('Custom')">Buy Now on WhatsApp - AUI DATA</button></div>
+<script>
+let net='MTN';
+function selNet(el,n){document.querySelectorAll('.net').forEach(e=>e.classList.remove('active'));el.classList.add('active');net=n}
+function selCat(el){document.querySelectorAll('.cat').forEach(e=>e.classList.remove('active'));el.classList.add('active')}
+function buy(p){
+let phone=document.getElementById('phone').value || '07066759055';
+let msg=`Hello AUI DATA, I want to buy ${p} for ${net} - My number is ${phone}`;
+window.open(`https://wa.me/2347066759055?text=${encodeURIComponent(msg)}`,'_blank');
+}
+</script>
 </body>
 </html>
