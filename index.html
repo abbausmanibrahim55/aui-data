@@ -1,56 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AUI DATA HUB</title>
-<style>
-body{margin:0;background:#0a0f1e;color:#fff;font-family:sans-serif}
-.splash{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e3a8a,#7c3aed);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:999}
-.logo{width:100px;height:100px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:26px;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900}
-.box{max-width:420px;margin:auto;padding:18px}
-.bal{background:linear-gradient(135deg,#1e3a8a,#7c3aed);padding:20px;border-radius:20px}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
-.it{background:#ffffff14;border:1px solid #ffffff22;border-radius:16px;padding:14px;text-align:center}
-input,select,button{width:100%;padding:14px;border-radius:12px;border:1px solid #ffffff22;background:#ffffff14;color:#fff;margin:6px 0}
-button{background:linear-gradient(90deg,#3b82f6,#8b5cf6);border:none;font-weight:700}
-</style>
-</head>
-<body>
-<div class="splash" id="sp">
-<div class="logo">AUI</div>
-<h1 style="margin-top:16px">AUI DATA HUB</h1>
-<p>Super App by Abba</p>
-</div>
-<div class="box">
-<h3>Wallet</h3>
-<div class="bal">
-<small>Balance</small>
-<h1>₦<span id="b">0</span></h1>
-<div style="display:flex;gap:8px">
-<button onclick="fund()">Add Fund</button>
-<button onclick="wd()">Withdraw</button>
-</div>
-</div>
-<div class="grid">
-<div class="it">📶<br>Data</div>
-<div class="it">📞<br>Airtime</div>
-<div class="it">💡<br>KEDCO</div>
-<div class="it">📺<br>GoTV</div>
-<div class="it">🧾<br>Bills</div>
-<div class="it">💬<br>Support</div>
-</div>
-<input id="ph" placeholder="07066759055">
-<select><option>MTN 1GB N300</option><option>Airtel 2GB N600</option><option>GLO 5GB N1500</option></select>
-<button onclick="alert('Order sent to 07066759055')">BUY NOW</button>
-<a href="https://wa.me/2347066759055" style="display:block;text-align:center;background:#25D366;color:#fff;padding:12px;border-radius:12px;text-decoration:none;margin-top:8px">WhatsApp Admin</a>
-</div>
-<script>
-setTimeout(()=>sp.style.display='none',2500);
-let bal=localStorage.getItem('aui')||0;
-document.getElementById('b').innerText=bal;
-function fund(){let a=prompt('Amount:');if(a){bal=parseInt(bal)+parseInt(a);localStorage.setItem('aui',bal);document.getElementById('b').innerText=bal}}
-function wd(){let a=prompt('Withdraw:');if(a&&a<=bal){bal-=a;localStorage.setItem('aui',bal);document.getElementById('b').innerText=bal}}
-</script>
-</body>
-</html>
+{
+  "name": "AUI DATA HUB",
+  "short_name": "AUI DATA",
+  "description": "Premium Fast Data for AUI Students - by Abba Usman Ibrahim",
+  "start_url": "/aui-data/",
+  "display": "standalone",
+  "background_color": "#0a0f1e",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/512/1e3a8a/ffffff?text=AUI",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
