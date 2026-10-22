@@ -1,107 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1e3a8a">
-<title>AUI DATA HUB</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#0a0f1e;color:#fff}
-.splash{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e3a8a,#7c3aed);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
-.logo{width:110px;height:110px;background:url('logo.png') center/cover, linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:900}
-.card{max-width:430px;margin:auto;padding:16px}
-.auth{position:fixed;inset:0;background:#0a0f1e;display:flex;align-items:center;justify-content:center;padding:20px;z-index:98}
-.authBox{width:100%;max-width:380px;background:rgba(255,255,255,.06);border:1px solid #ffffff22;border-radius:24px;padding:24px}
-input,select,button,textarea{width:100%;padding:14px;border-radius:12px;border:1px solid #ffffff22;background:#ffffff14;color:#fff;margin:6px 0;font-size:14px}
-button{background:linear-gradient(90deg,#3b82f6,#8b5cf6);border:none;font-weight:700;cursor:pointer}
-.tab{display:flex;gap:8px;margin:12px 0}
-.tab div{flex:1;text-align:center;padding:12px;border-radius:12px;background:rgba(255,255,255,.08);cursor:pointer}
-.tab .active{background:linear-gradient(90deg,#3b82f6,#8b5cf6)}
-.hidden{display:none}
-.bal{background:linear-gradient(135deg,#1e3a8a,#7c3aed);padding:20px;border-radius:22px}
-.box{background:rgba(255,255,255,.06);border:1px solid #ffffff22;border-radius:18px;padding:14px;margin:12px 0}
-.title{font-weight:800;font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.divider{height:1px;background:rgba(255,255,255,.1);margin:16px 0}
-</style>
-</head>
-<body>
-<div class="splash" id="sp"><div class="logo">AUI</div><h1 style="margin-top:14px">AUI DATA HUB</h1><small>by Abba Usman Ibrahim</small></div>
-
-<div class="auth" id="authPage">
-<div class="authBox">
-<div style="text-align:center"><div class="logo" style="width:80px;height:80px;margin:auto">AUI</div><h2 style="margin-top:10px">AUI DATA HUB</h2><small>Register - One Time</small></div>
-<div class="tab"><div id="tReg" class="active" onclick="showReg()">REGISTER</div><div id="tLog" onclick="showLog()">LOGIN</div></div>
-<div id="regForm"><input id="rName" placeholder="👤 Full Name"><input id="rPhone" placeholder="📱 Phone 07066759055"><input id="rEmail" placeholder="✉️ Email abba@gmail.com"><input id="rPass" type="password" placeholder="🔒 Password"><input id="rPass2" type="password" placeholder="🔒 Confirm Password"><button onclick="doRegister()">✅ CREATE ACCOUNT</button></div>
-<div id="logForm" class="hidden"><input id="lPhone" placeholder="📱 Phone"><input id="lPass" type="password" placeholder="🔒 Password"><button onclick="doLogin()">LOGIN</button></div>
-</div>
-</div>
-
-<div class="card hidden" id="mainApp">
-<div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;gap:8px;align-items:center"><div class="logo" style="width:40px;height:40px;font-size:18px;border-radius:12px">AUI</div><div><b id="uName"></b><br><small id="uPhone" style="opacity:.6"></small><br><small id="uEmail" style="opacity:.5;font-size:10px"></small></div></div><button onclick="logout()" style="width:auto;padding:6px 12px;background:#ffffff22;font-size:12px">Logout</button></div>
-
-<div class="bal" style="margin-top:12px"><small>Wallet Balance</small><h1>₦<span id="b">0.00</span></h1><div style="display:flex;gap:8px;margin-top:10px"><button onclick="fund()" style="background:rgba(255,255,255,.2)">💳 Add Fund</button><button onclick="wd()" style="background:rgba(255,255,255,.2)">💸 Withdraw</button></div><small style="opacity:.6">Opay: 7066759055 Abba Usman</small></div>
-
-<!-- 1. DATA -->
-<div class="box">
-<div class="title">📶 1. SAYAN DATA - MTN, AIRTEL, GLO, 9MOBILE</div>
-<input id="dPhone" placeholder="Phone Number">
-<select id="dNet"><option>MTN</option><option>AIRTEL</option><option>GLO</option><option>9MOBILE</option></select>
-<select id="dPlan"><option>1GB - ₦300 - 30 Days</option><option>2GB - ₦600</option><option>3GB - ₦900</option><option>5GB - ₦1500</option><option>10GB - ₦2800</option></select>
-<button onclick="buyData()">BUY DATA</button>
-</div>
-
-<!-- 2. AIRTIME -->
-<div class="box">
-<div class="title">📞 2. AIRTIME - All Networks</div>
-<input id="aPhone" placeholder="Phone Number">
-<select id="aNet"><option>MTN</option><option>AIRTEL</option><option>GLO</option><option>9MOBILE</option></select>
-<input id="aAmount" placeholder="Amount e.g 500">
-<button onclick="buyAirtime()">BUY AIRTIME</button>
-</div>
-
-<!-- 3. KEDCO -->
-<div class="box" style="border-color:#f59e0b55">
-<div class="title">💡 3. KEDCO - WUTA - KANO ELECTRIC</div>
-<input id="kMeter" placeholder="Meter Number">
-<select id="kType"><option>Prepaid - Token</option><option>Postpaid</option></select>
-<input id="kAmount" placeholder="Amount ₦1000 Min" type="number">
-<button onclick="payKedco()" style="background:linear-gradient(90deg,#f59e0b,#ef4444)">PAY KEDCO</button>
-<div id="kedcoToken" class="hidden" style="background:#000;padding:10px;border-radius:10px;margin-top:8px;text-align:center;border:1px dashed #f59e0b"><small>Token:</small><h3 id="tokenNum" style="letter-spacing:3px"></h3></div>
-</div>
-
-<!-- 4. GOTV/DSTV -->
-<div class="box" style="border-color:#8b5cf655">
-<div class="title">📺 4. GOTV / DSTV / STARTIMES</div>
-<select id="tvType"><option>GoTV</option><option>DSTV</option><option>Startimes</option></select>
-<input id="tvIuc" placeholder="IUC / Smartcard Number">
-<select id="tvPlan"><option>GoTV Smallie - ₦1300</option><option>GoTV Jinja - ₦2700</option><option>GoTV Jolli - ₦3950</option><option>GoTV Max - ₦5200</option><option>GoTV Supa - ₦8200</option><option>DSTV Padi - ₦3600</option><option>DSTV Yanga - ₦5000</option><option>DSTV Compact - ₦12300</option></select>
-<button onclick="payTv()" style="background:linear-gradient(90deg,#8b5cf6,#3b82f6)">PAY TV</button>
-</div>
-
-<!-- 5. KATI -->
-<div class="box" style="border-color:#10b98155">
-<div class="title">💳 5. SAYAR DA KATI - DATA CARD & AIRTIME CARD</div>
-<select id="cardType"><option>MTN Data Card</option><option>Airtel Data Card</option><option>Glo Card</option><option>MTN Airtime Card</option></select>
-<select id="cardAmount"><option value="300">₦300 - 1GB</option><option value="500">₦500 - 2GB</option><option value="1000">₦1000 - 3GB</option><option value="1500">₦1500 - 5GB</option></select>
-<input id="cardQty" type="number" placeholder="Yawan Kati" value="1">
-<button onclick="buyCard()" style="background:linear-gradient(90deg,#10b981,#06b6d4)">SAYI KATI</button>
-<div id="cardResult" class="hidden" style="background:#000;padding:10px;border-radius:10px;margin-top:8px;font-family:monospace;font-size:12px"><div id="cardPins"></div></div>
-</div>
-
-<!-- 6. CUSTOMER CARE + EMAIL -->
-<div class="box" style="border-color:#25D36655">
-<div class="title">💬 6. CUSTOMER CARE - TALLAFI</div>
-<div style="display:grid;gap:8px">
-<div style="background:#25D36622;border:1px solid #25D36655;padding:12px;border-radius:12px" onclick="window.open('https://wa.me/2347066759055')"><b>💬 WhatsApp: 07066759055</b><br><small>Abba Usman - Fast Reply</small></div>
-<div style="background:#3b82f622;border:1px solid #3b82f655;padding:12px;border-radius:12px" onclick="window.location.href='tel:07066759055'"><b>📞 Call: 07066759055</b></div>
-<div style="background:#7c3aed22;border:1px solid #7c3aed55;padding:12px;border-radius:12px"><b>✉️ Email: abbausmanibrahim55@gmail.com</b><br><small id="careEmailShow">Your Email: -</small></div>
-<div style="background:rgba(255,255,255,.05);padding:12px;border-radius:12px"><b>🏦 Pay: Opay 7066759055 - Abba Usman Ibrahim</b><br><small>Moniepoint 7066759055</small></div>
-</div>
-<textarea id="careMsg" placeholder="Rubuta matsalar ka - Message to Admin..." style="height:70px;margin-top:10px"></textarea>
-<button onclick="sendCare()" style="background:#25D366">📩 SEND MESSAGE TO ADMIN</button>
-</div>
-
-<div class="divider"></div>
-<a href="https://wa.me/2347066759055" style="display:block;text-align:center;background:#25D366;color:#fff;padding:14px;border-radius:14px;text-decoration:none;font
+.logo{
+width:120px;height:120px;
+background:url('logo.png') center/contain no-repeat;
+background-color:#fff;
+border-radius:24px;
+display:flex;align-items:center;justify-content:center;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+.splash .logo{
+width:160px;height:160px;
+background-color:#fff;
+border-radius:32px;
+}
