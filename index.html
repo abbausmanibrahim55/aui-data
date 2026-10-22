@@ -1,16 +1,41 @@
-{
-  "name": "AUI DATA HUB",
-  "short_name": "AUI DATA",
-  "description": "Premium Fast Data for AUI Students - by Abba Usman Ibrahim",
-  "start_url": "/aui-data/",
-  "display": "standalone",
-  "background_color": "#0a0f1e",
-  "theme_color": "#1e3a8a",
-  "icons": [
-    {
-      "src": "https://via.placeholder.com/512/1e3a8a/ffffff?text=AUI",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
-}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1e3a8a">
+<title>AUI DATA HUB</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#0a0f1e;color:#fff}
+.splash{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e3a8a,#7c3aed);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999}
+.logo{width:100px;height:100px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:26px;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900}
+.box{max-width:430px;margin:auto;padding:18px}
+.bal{background:linear-gradient(135deg,#1e3a8a,#7c3aed);padding:20px;border-radius:20px;margin-top:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:14px 0}
+.it{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px;text-align:center}
+input,select,button{width:100%;padding:14px;border-radius:12px;border:1px solid #ffffff22;background:#ffffff14;color:#fff;margin:6px 0}
+button{background:linear-gradient(90deg,#3b82f6,#8b5cf6);border:none;font-weight:700}
+</style>
+</head>
+<body>
+<div class="splash" id="sp"><div class="logo">AUI</div><h1 style="margin-top:16px">AUI DATA HUB</h1><small>by Abba</small></div>
+<div class="box">
+<div style="display:flex;justify-content:space-between;margin:10px 0"><b>AUI Student</b><span style="background:#ffffff22;padding:4px 10px;border-radius:20px;font-size:11px">VERIFIED</span></div>
+<div class="bal"><small>Wallet Balance</small><h1>₦<span id="b">0</span></h1><div style="display:flex;gap:8px;margin-top:10px"><button onclick="fund()" style="background:rgba(255,255,255,.2)">Add Fund</button><button onclick="wd()" style="background:rgba(255,255,255,.2)">Withdraw</button></div></div>
+<div class="grid"><div class="it"><div>📶</div>Data</div><div class="it"><div>📞</div>Airtime</div><div class="it"><div>💡</div>KEDCO</div><div class="it"><div>📺</div>GoTV</div><div class="it"><div>🧾</div>Bills</div><div class="it"><div>💬</div>Support</div></div>
+<input id="ph" placeholder="07066759055 - Phone"><select><option>MTN 1GB - N300</option><option>Airtel 2GB - N600</option><option>Glo 5GB - N1500</option></select>
+<button onclick="buyNow()">BUY NOW</button>
+<a href="https://wa.me/2347066759055" style="display:block;text-align:center;background:#25D366;color:#fff;padding:12px;border-radius:12px;text-decoration:none;margin-top:8px;font-weight:700">WhatsApp 07066759055</a>
+</div>
+<script>
+setTimeout(()=>sp.style.display='none',2500);
+let bal=localStorage.getItem('aui_bal')||0;
+document.getElementById('b').innerText=bal;
+function fund(){let a=prompt('Amount:');if(a){bal=parseInt(bal)+parseInt(a);localStorage.setItem('aui_bal',bal);document.getElementById('b').innerText=bal;alert('Added!')}}
+function wd(){let a=prompt('Withdraw:');if(a&&a<=bal){bal-=a;localStorage.setItem('aui_bal',bal);document.getElementById('b').innerText=bal;alert('Sent to bank!')}}
+function buyNow(){let ph=document.getElementById('ph').value;if(!ph){alert('Enter phone');return}if(bal<300){alert('Add fund first');fund();return}bal-=300;localStorage.setItem('aui_bal',bal);document.getElementById('b').innerText=bal;alert('1GB MTN to '+ph+' Success!')}
+</script>
+</body>
+</html>
