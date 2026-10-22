@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUI DATA HUB - VTU</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0a0e27;color:white;min-height:100vh}
+.hidden{display:none!important}
+.header{background:linear-gradient(135deg,#667eea,#764ba2);padding:20px;text-align:center;position:sticky;top:0;z-index:10}
+.logo{font-size:26px;font-weight:bold}
+.card{background:#151a33;margin:12px;padding:18px;border-x solid #242c56}
+.btn{background:#00ff88;color:#000;padding:13px;border:none;border-radius:10px;width:100%;font-weight:bold;font-size:16px;margin-top:10px;cursor:pointer}
+.btn-dark{background:#2a335a;color:white}
+input,select{width:100%;padding:13px;margin:8px 0;border-radius:10px;border:1px solid #2a335a;background:#0f1430;color:white}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.service{background:#1d2342;padding:18px;border-radius:12px;text-align:center;border:1px solid #2a335a;cursor:pointer}
+.balance-box{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;padding:20px;border-radius:14px;margin:12px;text-align:center}
+.balance-amount{font-size:32px;font-weight:bold}
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:20px;z-index:100}
+.modal-box{background:#151a33;width:100%;max-width:400px;padding:25px;border-radius:16px}
+.tab{display:flex;gap:10px;margin:15px 0}
+.tab div{flex:1;text-align:center;padding:10px;border-radius:8px;background:#1d2342;cursor:pointer}
+.tab .active{background:#667eea}
+.pin-dots{display:flex;gap:10px;justify-content:center;margin:15px 0}
+.pin-dots span{width:14px;height:14px;border-radius:50%;background:#2a335a;display:block}
+.pin-dots span.filled{background:#00ff88}
+.num-pad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:15px}
+.num-pad button{padding:18px;font-size:20px;border-radius:10px;border:none;background:#1d2342;color:white;font-weight:bold}
+</style>
+</head>
+<body>
+<div id="authScreen">
+<div class="header"><div class="logo">AUI DATA HUB</div><p>ATBU Azare VTU Center</p></div>
+<div class="card">
+<div class="tab"><div id="loginTab" class="active" onclick="switchAuth('login')">Login</div><div id="regTab" onclick="switchAuth('register')">Register</div></div>
+<div id="loginForm"><input id="loginPhone" placeholder="Phone Number"><input id="loginPass" type="password" placeholder="Password"><button class="btn" onclick="doLogin()">Login</button></div>
+<div id="regForm" class="hidden"><input id="regName" placeholder="Full Name"><input id="regPhone" placeholder="Phone 080..."><input id="regPass" type="password" placeholder="Create Password"><button class="btn" onclick="doRegister()">Create Account</button></div>
+</div>
+</div>
+<div id="pinSetupScreen" class="hidden">
+<div class="header"><div class="logo">Create Transaction PIN</div><p>4-digit PIN for payments</p></div>
+<div class="card" style="text-align:center"><div class="pin-dots" id="pinDots"><span></span><span></span><span></span><span></span></div><div class="num-pad"><button onclick="addPin('1')">1</button><button onclick="addPin('2')">2</button><button onclick="addPin('3')">3</button><button onclick="addPin('4')">4</button><button onclick="addPin('5')">5</button><button onclick="addPin('6')">6</button><button onclick="addPin('7')">7</button><button onclick="addPin('8')">8</button><button onclick="addPin('9')">9</button><button onclick="clearPin()">C</button><button onclick="addPin('0')">0</button><button onclick="delPin()">⌫</button></div><button class="btn" onclick="savePin()">Save PIN</button></div>
+</div>
+<div id="mainApp" class="hidden">
+<div class="header"><div style="display:flex;justify-content:space-between"><div class="logo" style="font-size:20px">AUI DATA HUB</div><div onclick="doLogout()" style="background:#ff4757;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer">Logout</div></div><p id="welcomeName" style="margin-top:8px">Welcome</p></div>
+<div class="balance-box"><p>Wallet Balance</p><div class="balance-amount" id="walletBal">₦0.00</div><button class="btn" onclick="openFund()" style="background:#000;color:#00ff88;margin-top:10px">+ Fund Wallet (Demo)</button></div>
+<div class="card"><h3>Our Services</h3><div class="grid2" style="margin-top:12px"><div class="service" onclick="openService('data')">📱<br><b>Buy Data</b></div><div class="service" onclick="openService('airtime')">📞<br><b>Airtime</b></div><div class="service" onclick="openService('electric')">💡<br><b>Electric Bill</b></div><div class="service" onclick="openService('tv')">📺<br><b>TV Sub</b></div></div></div>
+<div class="card"><h3>Recent Transactions</h3><div id="historyList" style="margin-top:10px">No transaction yet</div></div>
+</div>
+<div id="serviceModal" class="modal hidden"><div class="modal-box"><h3 id="serviceTitle">Buy Data</h3><input id="svcPhone" placeholder="Phone / Meter No"><select id="svcNetwork"><option>MTN</option><option>Airtel</option><option>Glo</option><option>9mobile</option></select><select id="svcPlan"><option>500MB - ₦150</option><option>1GB - ₦280</option><option>2GB - ₦560</option><option>3GB - ₦840</option><option>5GB - ₦1400</option></select><input id="svcAmount" placeholder="Amount" class="hidden"><button class="btn" onclick="askPin()">Continue</button><button class="btn btn-dark" onclick="closeModal()">Cancel</button></div></div>
+<div id="pinVerifyModal" class="modal hidden"><div class="modal-box" style="text-align:center"><h3>Enter PIN</h3><div class="pin-dots" id="verifyDots"><span></span><span></span><span></span><span></span></div><div class="num-pad"><button onclick="addVerify('1')">1</button><button onclick="addVerify('2')">2</button><button onclick="addVerify('3')">3</button><button onclick="addVerify('4')">4</button><button onclick="addVerify('5')">5</button><button onclick="addVerify('6')">6</button><button onclick="addVerify('7')">7</button><button onclick="addVerify('8')">8</button><button onclick="addVerify('9')">9</button><button onclick="clearVerify()">C</button><button onclick="addVerify('0')">0</button><button onclick="delVerify()">⌫</button></div><button class="btn" onclick="confirmTransaction()">Pay Now</button><button class="btn btn-dark" onclick="closeVerify()">Cancel</button></div></div>
+<script>
+let tempPin="",verifyPin="",currentService="";
+let users=JSON.parse(localStorage.getItem('aui_users')||'{}');
+let currentUser=JSON.parse(localStorage.getItem('aui_current')||'null');
+function switchAuth(t){document.getElementById('loginForm').classList.toggle('hidden',t!=='login');document.getElementById('regForm').classList.toggle('hidden',t!=='register');document.getElementById('loginTab').classList.toggle('active',t==='login');document.getElementById('regTab').classList.toggle('active',t==='register');}
+function doRegister(){let n=document.getElementById('regName').value.trim();let p=document.getElementById('regPhone').value.trim();let pw=document.getElementById('regPass').value.trim();if(!n||!p||!pw){alert('Fill all');return;}if(users[p]){alert('Already registered');switchAuth('login');return;}users[p]={name:n,phone:p,pass:pw,pin:'',bal:0,history:[]};localStorage.setItem('aui_users',JSON.stringify(users));currentUser=users[p];localStorage.setItem('aui_current',JSON.stringify(currentUser));document.getElementById('authScreen').classList.add('hidden');document.getElementById('pinSetupScreen').classList.remove('hidden');}
+function doLogin(){let p=document.getElementById('loginPhone').value.trim();let pw=document.getElementById('loginPass').value.trim();if(!users[p]||users[p].pass!==pw){alert('Wrong phone or password');return;}currentUser=users[p];localStorage.setItem('aui_current',JSON.stringify(currentUser));checkFlow();}
+function checkFlow(){if(!currentUser)return;if(!currentUser.pin){document.getElementById('authScreen').classList.add('hidden');document.getElementById('pinSetupScreen').classList.remove('hidden');}else showMain();}
+function addPin(d){if(tempPin.length<4){tempPin+=d;renderPin();}}function delPin(){tempPin=tempPin.slice(0,-1);renderPin();}function clearPin(){tempPin="";renderPin();}function renderPin(){document.querySelectorAll('#pinDots span').forEach((s,i)=>s.classList.toggle('filled',i<tempPin.length));}
+function savePin(){if(tempPin.length!==4){alert('PIN must be 4 digits');return;}users[currentUser.phone].pin=tempPin;currentUser.pin=tempPin;localStorage.setItem('aui_users',JSON.stringify(users));localStorage.setItem('aui_current',JSON.stringify(currentUser));showMain();}
+function showMain(){document.getElementById('authScreen').classList.add('hidden');document.getElementById('pinSetupScreen').classList.add('hidden');document.getElementById('mainApp').classList.remove('hidden');document.getElementById('welcomeName').innerText='Welcome, '+currentUser.name;document.getElementById('walletBal').innerText='₦'+(currentUser.bal||0).toLocaleString()+'.00';renderHistory();}
+function renderHistory(){let h=document.getElementById('historyList');if(!currentUser.history||!currentUser.history.length){h.innerHTML='No transaction yet';return;}h.innerHTML=currentUser.history.slice().reverse().map(x=>`<div style="padding:8px 0;border-bottom:1px solid #242c56"><b>${x.type}</b> - ${x.detail}<br><small style="color:#00ff88">${x.time}</small></div>`).join('');}
+function openService(s){currentService=s;document.getElementById('serviceModal').classList.remove('hidden');if(s==='data'){document.getElementById('serviceTitle').innerText='Buy Data';document.getElementById('svcPlan').classList.remove('hidden');document.getElementById('svcAmount').classList.add('hidden');}else if(s==='airtime'){document.getElementById('serviceTitle').innerText='Buy Airtime';document.getElementById('svcPlan').classList.add('hidden');document.getElementById('svcAmount').classList.remove('hidden');document.getElementById('svcAmount').placeholder='Amount e.g 500';}else if(s==='electric'){document.getElementById('serviceTitle').innerText='Electricity Bill';document.getElementById('svcPlan').classList.add('hidden');document.getElementById('svcAmount').classList.remove('hidden');document.getElementById('svcAmount').placeholder='Amount';}else{document.getElementById('serviceTitle').innerText='TV Subscription';document.getElementById('svcPlan').classList.add('hidden');document.getElementById('svcAmount').classList.remove('hidden');document.getElementById('svcAmount').placeholder='Bouquet / Amount';}}
+function closeModal(){document.getElementById('serviceModal').classList.add('hidden');}function askPin(){closeModal();verifyPin="";renderVerify();document.getElementById('pinVerifyModal').classList.remove('hidden');}function closeVerify(){document.getElementById('pinVerifyModal').classList.add('hidden');}function addVerify(d){if(verifyPin.length<4){verifyPin+=d;renderVerify();}}function delVerify(){verifyPin=verifyPin.slice(0,-1);renderVerify();}function clearVerify(){verifyPin="";renderVerify();}function renderVerify(){document.querySelectorAll('#verifyDots span').forEach((s,i)=>s.classList.toggle('filled',i<verifyPin.length));}
+function confirmTransaction(){if(verifyPin!==currentUser.pin){alert('Wrong PIN!');return;}let phone=document.getElementById('svcPhone').value.trim();let plan=document.getElementById('svcPlan').value;let amt=document.getElementById('svcAmount').value;let net=document.getElementById('svcNetwork').value;if(!phone){alert('Enter phone/meter no');return;}let detail=currentService==='data'?`${net} ${plan} to ${phone}`:`${net} ₦${amt} to ${phone}`;let tx={type:currentService.toUpperCase(),detail,time:new Date().toLocaleString()};currentUser.history.push(tx);users[currentUser.phone]=currentUser;localStorage.setItem('aui_users',JSON.stringify(users));localStorage.setItem('aui_current',JSON.stringify(currentUser));closeVerify();renderHistory();let msg=`New Order - AUI DATA HUB%0AName: ${currentUser.name}%0APhone: ${currentUser.phone}%0AService: ${detail}`;window.open(`https://wa.me/2348101234567?text=${msg}`,'_blank');alert('Order sent to WhatsApp!');}
+function openFund(){let amt=prompt('Enter amount to fund (Demo): e.g 1000');if(!amt)return;amt=parseInt(amt);if(isNaN(amt))return;currentUser.bal=(currentUser.bal||0)+amt;users[currentUser.phone]=currentUser;localStorage.setItem('aui_users',JSON.stringify(users));localStorage.setItem('aui_current',JSON.stringify(currentUser));showMain();alert('Wallet funded ₦'+amt);}
+function doLogout(){localStorage.removeItem('aui_current');location.reload();}
+if(currentUser)checkFlow();
+</script>
+</body>
+</html>
