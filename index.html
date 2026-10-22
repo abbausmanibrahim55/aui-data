@@ -2,59 +2,51 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>AUI DATA ENTERPRISE - RC 9952640</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AUI DATA - RC 9952640</title>
 <meta name="theme-color" content="#0d47a1">
 <link rel="icon" href="logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#eef2f7;color:#1a2332}
-.splash{position:fixed;inset:0;background:linear-gradient(135deg,#0d47a1,#1565c0,#1e88e5);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;color:#fff;transition:.8s}.splash.hide{opacity:0;pointer-events:none}
-.logo{width:150px;height:150px;background:url('logo.png') center/contain no-repeat,#fff;border-radius:30px;box-shadow:0 15px 45px rgba(0,0,0,.3)}
-.splash .logo{width:210px;height:210px;border-radius:42px;animation:float 2.5s infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.bal{background:linear-gradient(135deg,#0d47a1 0%,#1565c0 45%,#ff6f00 140%);color:#fff;padding:26px;border-radius:28px;margin:14px;position:relative;overflow:hidden;box-shadow:0 12px 35px rgba(13,71,161,.4)}
-.bal::before{content:'';position:absolute;top:-70%;right:-25%;width:95%;height:250%;background:radial-gradient(circle,rgba(255,255,255,.14) 0%,rgba(255,111,0,.12) 40%,transparent 70%);transform:rotate(12deg)}
-.card{background:#fff;margin:12px 14px;padding:20px;border-radius:22px;box-shadow:0 6px 20px rgba(13,71,161,.06);border:1px solid #eef2f7}
-.btn{width:100%;padding:15px;background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;border:0;border-radius:15px;font-weight:800;font-size:15px;box-shadow:0 6px 18px rgba(13,71,161,.3);cursor:pointer}
-.btn2{padding:11px 18px;border-radius:13px;border:0;font-weight:700;font-size:13px;cursor:pointer}
-input,select{width:100%;padding:14px 16px;border:1.8px solid #dde6f2;border-radius:14px;margin:8px 0;font-size:15px;background:#f8fafd;outline:0}
-input:focus,select:focus{border-color:#1565c0;background:#fff}
-.hide{display:none!important}.topbar{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 15px rgba(0,0,0,.07);position:sticky;top:0;z-index:20}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.modal{position:fixed;inset:0;background:rgba(10,25,60,.6);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:999;padding:18px}
-.modalBox{background:#fff;width:100%;max-width:400px;border-radius:26px;padding:24px;box-shadow:0 25px 70px rgba(0,0,0,.3)}
-.auth{max-width:430px;margin:0 auto;padding:18px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
-.service-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:10px}
-.badge{font-size:10px;padding:4px 8px;border-radius:8px;font-weight:800}
+body{background:#eef2f7}
+.splash{position:fixed;inset:0;background:linear-gradient(135deg,#0d47a1,#1565c0,#1e88e5);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;color:#fff;transition:.8s}
+.splash.hide{opacity:0;pointer-events:none}
+.logo{width:150px;height:150px;background:url('logo.png') center/contain no-repeat,#fff;border-radius:30px;box-shadow:0 12px 30px rgba(0,0,0,.2)}
+.splash .logo{width:200px;height:200px;border-radius:40px;animation:fl 2s infinite}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.bal{background:linear-gradient(135deg,#0d47a1,#1565c0,#ff6f00);color:#fff;padding:24px;border-radius:26px;margin:14px;position:relative;overflow:hidden;box-shadow:0 12px 35px rgba(13,71,161,.4)}
+.bal::before{content:'';position:absolute;top:-60%;right:-20%;width:90%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);transform:rotate(12deg)}
+.card{background:#fff;margin:12px 14px;padding:18px;border-radius:20px;box-shadow:0 4px 18px rgba(13,71,161,.06);border:1px solid #eef2f7}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;border:0;border-radius:14px;font-weight:800;font-size:15px;cursor:pointer;box-shadow:0 6px 18px rgba(13,71,161,.3)}
+.btn2{padding:10px 16px;border-radius:12px;border:0;font-weight:700;font-size:13px;cursor:pointer}
+input,select{width:100%;padding:13px 15px;border:1.8px solid #dde6f2;border-radius:13px;margin:7px 0;font-size:14px;background:#f8fafd;outline:0}
+.hide{display:none!important}
+.topbar{background:rgba(255,255,255,.95);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,.06);position:sticky;top:0;z-index:20}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.modal{position:fixed;inset:0;background:rgba(10,25,60,.55);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;z-index:999;padding:16px}
+.modalBox{background:#fff;width:100%;max-width:380px;border-radius:24px;padding:20px}
+.badge{font-size:10px;padding:3px 7px;border-radius:7px;font-weight:800}
+.auth{max-width:400px;margin:0 auto;padding:16px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 </style>
 </head>
 <body>
-<div class="splash" id="splash"><div class="logo"></div><h1 style="margin-top:22px">AUI DATA ENTERPRISE</h1><b style="margin-top:6px;color:#ffcc80">RC 9952640</b><small style="margin-top:12px;opacity:.9">Al-Qalam University Katsina</small><small style="margin-top:4px;opacity:.7">Abba Usman Ibrahim</small></div>
+<div class="splash" id="splash"><div class="logo"></div><h2 style="margin-top:18px">AUI DATA ENTERPRISE</h2><b style="color:#ffcc80;margin-top:4px">RC 9952640</b><small style="margin-top:10px;opacity:.85">Al-Qalam University Katsina</small></div>
 
 <div id="authPage" class="auth">
-<div style="text-align:center;padding:10px 0 18px"><div class="logo" style="margin:0 auto 16px;width:140px;height:140px"></div><h1 style="color:#0d47a1">AUI DATA</h1><p style="color:#ff6f00;font-weight:800">ENTERPRISE • RC 9952640</p><p style="font-size:12px;opacity:.6;margin-top:8px">Fast, Reliable & Affordable</p></div>
-<div class="card"><h3>🔐 Create Account</h3><p style="font-size:12px;opacity:.6;margin-bottom:12px">Register to get ₦2,500 bonus</p><input id="rName" placeholder="Full Name - e.g Abba Usman"><input id="rEmail" type="email" placeholder="Email - e.g abba@gmail.com"><input id="rPhone" placeholder="Phone Number - e.g 07066759055"><input id="rPass" type="password" placeholder="Password - e.g 123456"><button class="btn" onclick="register()" style="margin-top:8px">Register Now →</button><p style="text-align:center;font-size:11px;opacity:.5;margin-top:12px">By registering you agree to RC 9952640 terms</p></div>
+<div style="text-align:center;padding:8px 0 14px"><div class="logo" style="margin:0 auto 12px;width:120px;height:120px"></div><h1 style="color:#0d47a1">AUI DATA</h1><p style="color:#ff6f00;font-weight:800">RC 9952640 - VERIFIED</p></div>
+<div class="card"><h3>🔐 Create Account</h3><small style="opacity:.6">Get ₦2,500 bonus instantly</small><input id="rName" placeholder="Full Name"><input id="rEmail" type="email" placeholder="Email"><input id="rPhone" placeholder="Phone Number"><input id="rPass" type="password" placeholder="Password"><button class="btn" onclick="register()" style="margin-top:8px">Register Now →</button></div>
 </div>
 
 <div id="appPage" class="hide">
-<div class="topbar"><div style="display:flex;align-items:center;gap:12px"><div class="logo" style="width:50px;height:50px;border-radius:15px"></div><div><b style="color:#0d47a1">AUI DATA</b><div style="display:flex;gap:6px"><span class="badge" style="background:#e3f2fd;color:#0d47a1">RC 9952640</span><span class="badge" style="background:#e8f5e9;color:#2e7d32">VERIFIED</span></div></div></div><button onclick="logout()" style="background:#f0f4f9;border:0;padding:9px 16px;border-radius:12px;font-size:12px;font-weight:700">Logout</button></div>
+<div class="topbar"><div style="display:flex;align-items:center;gap:10px"><div class="logo" style="width:48px;height:48px;border-radius:14px"></div><div><b style="color:#0d47a1">AUI DATA</b><div style="display:flex;gap:4px"><span class="badge" style="background:#e3f2fd;color:#0d47a1">RC 9952640</span><span class="badge" style="background:#e8f5e9;color:#2e7d32">VERIFIED</span></div></div></div><button onclick="logout()" style="background:#f0f4f9;border:0;padding:8px 14px;border-radius:10px;font-size:12px;font-weight:700">Logout</button></div>
 
-<div class="bal"><div style="display:flex;justify-content:space-between"><div><small style="opacity:.9">WALLET BALANCE • RC 9952640</small><h1 style="font-size:36px;margin:8px 0" id="bText">₦2,500.00</h1><p id="uText" style="font-size:12px;opacity:.9;background:rgba(0,0,0,.18);display:inline-block;padding:4px 10px;border-radius:20px"></p></div><div style="background:rgba(255,255,255,.22);width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px">👛</div></div><div class="grid2" style="margin-top:20px"><button class="btn2" style="background:#fff;color:#0d47a1;padding:14px" onclick="openDeposit()">💰 Deposit</button><button class="btn2" style="background:rgba(255,255,255,.18);color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:14px" onclick="openWithdraw()">🏧 Withdraw</button></div></div>
+<div class="bal"><div style="display:flex;justify-content:space-between"><div><small>WALLET BALANCE • RC 9952640</small><h1 style="font-size:34px;margin:6px 0" id="bText">₦2,500.00</h1><p id="uText" style="font-size:11px;opacity:.9;background:rgba(0,0,0,.18);display:inline-block;padding:3px 9px;border-radius:20px"></p></div><div style="background:rgba(255,255,255,.22);width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center">👛</div></div><div class="grid2" style="margin-top:18px"><button class="btn2" style="background:#fff;color:#0d47a1;padding:12px" onclick="openDeposit()">💰 Deposit</button><button class="btn2" style="background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.3);padding:12px" onclick="openWithdraw()">🏧 Withdraw</button></div></div>
 
-<div class="grid3" style="margin:0 14px"><div class="card" style="margin:0;padding:14px;text-align:center"><div style="font-size:20px">💸</div><small style="opacity:.6;font-size:11px">Spent</small><br><b id="spent">₦0</b></div><div class="card" style="margin:0;padding:14px;text-align:center"><div style="font-size:20px">📊</div><small style="opacity:.6;font-size:11px">Transactions</small><br><b id="txCount">0</b></div><div class="card" style="margin:0;padding:14px;text-align:center"><div style="font-size:20px">🎁</div><small style="opacity:.6;font-size:11px">Bonus</small><br><b style="color:#2e7d32">₦2,500</b></div></div>
+<div class="grid3" style="margin:0 14px"><div class="card" style="margin:0;padding:12px;text-align:center"><div>💸</div><small style="opacity:.6;font-size:10px">Spent</small><br><b id="spent">₦0</b></div><div class="card" style="margin:0;padding:12px;text-align:center"><div>📊</div><small style="opacity:.6;font-size:10px">Transactions</small><br><b id="txCount">0</b></div><div class="card" style="margin:0;padding:12px;text-align:center"><div>🎁</div><small style="opacity:.6;font-size:10px">Bonus</small><br><b style="color:#2e7d32">₦2,500</b></div></div>
 
-<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div class="service-icon" style="background:#e3f2fd">📱</div><div><b>Buy Data</b><br><small style="opacity:.6">MTN, Airtel, Glo, 9mobile</small></div></div><select id="net"><option>MTN</option><option>Airtel</option><option>Glo</option><option>9mobile</option></select><select id="plan"><option>1GB - 30 days - ₦300</option><option>2GB - 30 days - ₦600</option><option>5GB - 30 days - ₦1,400</option><option>10GB - 30 days - ₦2,700</option></select><input id="dPhone" placeholder="Phone number to send to"><button class="btn" onclick="buyData()">Buy Data Now</button></div>
+<div class="card"><b>📱 Buy Data</b><br><small style="opacity:.6">MTN, Airtel, Glo, 9mobile</small><select id="net" style="margin-top:10px"><option>MTN</option><option>Airtel</option><option>Glo</option><option>9mobile</option></select><select id="plan"><option>1GB - 30 days - ₦300</option><option>2GB - 30 days - ₦600</option><option>5GB - 30 days - ₦1,400</option><option>10GB - 30 days - ₦2,700</option></select><input id="dPhone" placeholder="Phone number"><button class="btn" onclick="buyData()">Buy Data Now</button></div>
 
-<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div class="service-icon" style="background:#fff3e0">💡</div><div><b>KEDCO - Electricity</b><br><small style="opacity:.6">Prepaid & Postpaid</small></div></div><input id="kMeter" placeholder="Meter Number - e.g 1234567890"><select id="kType"><option>Prepaid</option><option>Postpaid</option></select><input id="kAmt" type="number" placeholder="Amount ₦ - e.g 2000"><button class="btn" style="background:linear-gradient(135deg,#ef6c00,#ff9800)" onclick="payKEDCO()">Pay KEDCO Now</button></div>
+<div class="card"><b>💡 KEDCO Electricity</b><br><small style="opacity:.6">Prepaid & Postpaid</small><input id="kMeter" placeholder="Meter Number" style="margin-top:10px"><select id="kType"><option>Prepaid</option><option>Postpaid</option></select><input id="kAmt" type="number" placeholder="Amount ₦"><button class="btn" style="background:linear-gradient(135deg,#ef6c00,#ff9800)" onclick="payKEDCO()">Pay KEDCO Now</button></div>
 
-<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div class="service-icon" style="background:#e8f5e9">📺</div><div><b>GoTV / DSTV / Startimes</b><br><small style="opacity:.6">Fast TV subscription</small></div></div><select id="tvT"><option>GoTV</option><option>DSTV</option><option>Startimes</option></select><input id="tvIuc" placeholder="IUC / Smart Card Number"><select id="tvP"><option>GoTV Smallie ₦1,300</option><option>GoTV Jolli ₦2,800</option><option>GoTV Max ₦6,100</option><option>DSTV Confam ₦9,300</option></select><button class="btn" style="background:linear-gradient(135deg,#2e7d32,#43a047)" onclick="payTV()">Pay TV Now</button></div>
-
-<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div class="service-icon" style="background:#f3e5f5">📞</div><div><b>Buy Airtime</b><br><small style="opacity:.6">All networks</small></div></div><select id="aNet"><option>MTN</option><option>Airtel</option><option>Glo</option><option>9mobile</option></select><input id="aPhone" placeholder="Phone number"><input id="aAmt" type="number" placeholder="Amount ₦ - e.g 500"><button class="btn" style="background:linear-gradient(135deg,#6a1b9a,#8e24aa)" onclick="buyAir()">Buy Airtime Now</button></div>
-
-<div class="card"><h3 style="margin-bottom:12px">📜 Transaction History</h3><div id="history">No transactions yet - Deposit or buy data</div></div>
-
-<div class="card" style="background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;text-align:center"><div class="logo" style="margin:0 auto 12px;width:70px;height:70px;border-radius:18px"></div><b>AUI DATA ENTERPRISE</b><br><span style="color:#ffcc80;font-weight:800">RC 9952640</span><p style="font-size:12px;opacity:.85;margin-top:8px">Al-Qalam University Katsina<br>Abba Usman Ibrahim<br>abbausmanibrahim55@gmail.com<br>07066759055</p><div style="margin-top:14px;display:flex;gap:8px;justify-content:center"><span class="badge" style="background:rgba(255,255,255,.22);color:#fff">ENGLISH</span><span class="badge" style="background:rgba(255,255,255,.22);color:#fff">VERIFIED</span><span class="badge" style="background:rgba(255,255,255,.22);color:#fff">RC 9952640</span></div></div>
-</div>
-
-<div id="depModal" class="modal hide"><div class="modalBox"><div style="text-align:center;margin-bottom:14px"><div style="width:60px;height:60px;background:#e3f2fd;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 10px">💰</div><h3>Deposit Money - Add Funds</h3><p style="font-size:12px;opacity:.6;margin-top:4px">Choose amount - RC 9952640</p></div
+<div class="card"><b>📺 GoTV / DSTV / Startimes</b><br><small style="opacity:.6">Fast subscription</small><select id="tvT" style="margin-top:10px"><option>GoTV</option><option>DSTV</option><option>Startimes</option></select><input id="tvIuc" placeholder="IUC / Smart Card"><select id="tvP"><option>GoTV Smallie ₦1,300</option><option>GoTV Jolli ₦2,800</option><option>GoTV Max ₦6,100</option><option>DSTV Confam ₦9,300</option></select><button class="btn" style="background:linear-gradient(135deg,#2e7d32,#43a047)"
