@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#063b2b">
+  <title>AUI Data</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f7f5;
+      color: #17251f;
+    }
+    header {
+      background: #063b2b;
+      color: white;
+      padding: 24px 18px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; }
+    main {
+      max-width: 520px;
+      margin: 22px auto;
+      padding: 16px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px #0000000d;
+    }
+    h2 { margin-top: 0; }
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border: 0;
+      border-radius: 8px;
+      background: #08784e;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .secondary { background: #e5f2eb; color: #063b2b; }
+    .notice { color: #5b665f; font-size: 14px; line-height: 1.5; }
+    footer { text-align: center; padding: 20px; color: #66716b; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AUI DATA</h1>
+    <p>Fast, Simple and Reliable Data Services</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Welcome to AUI Data</h2>
+      <p>Buy mobile data and airtime easily with AUI Data.</p>
+      <button onclick="showMessage()">Get Started</button>
+    </section>
+
+    <section class="card">
+      <h2>Our Services</h2>
+      <button class="secondary" onclick="showMessage()">Buy Data</button>
+      <button class="secondary" onclick="showMessage()">Buy Airtime</button>
+      <button class="secondary" onclick="showMessage()">My Account</button>
+    </section>
+
+    <section class="card">
+      <h2>Coming Soon</h2>
+      <p class="notice">
+        Account registration, secure payments, wallet services,
+        and real data delivery will be enabled after the required
+        secure backend and service-provider integrations are completed.
+      </p>
+    </section>
+  </main>
+
+  <footer>© 2026 AUI Data. All rights reserved.</footer>
+
+  <script>
+    function showMessage() {
+      alert("AUI Data service is being prepared. No payment or data purchase has been made.");
+    }
+  </script>
+</body>
+</html>
